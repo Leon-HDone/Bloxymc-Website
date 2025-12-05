@@ -132,87 +132,7 @@
         </div>
     </section>
 
-    <!-- (E) SUPPORT & HILFE SECTION -->
-    <section id="support" class="support">
-        <h2>Support & Hilfe</h2>
-        <div class="support-container">
-            <!-- Videos Section -->
-            <div class="support-videos">
-                <h3>Tutorial Videos</h3>
-                <div class="videos-grid">
-                    <div class="video-card">
-                        <div class="video-container">
-                            <iframe width="100%" height="315" src="https://youtu.be/mlYmRvNzd5w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <h4>Server Installation</h4>
-                        <p>Wie du den Server installierst und startest</p>
-                    </div>
-
-                    <div class="video-card">
-                        <div class="video-container">
-                            <iframe width="100%" height="315" src="https://youtu.be/mlYmRvNzd5w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <h4>Erste Schritte</h4>
-                        <p>Deine ersten Schritte auf dem Server</p>
-                    </div>
-
-                    <div class="video-card">
-                        <div class="video-container">
-                            <iframe width="100%" height="315" src="https://youtu.be/5pwl8ktCow8?si=Ejg7fyzeqSjJhcHa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <h4>Häufig gestellte Fragen</h4>
-                        <p>Antworten auf deine Fragen</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ticket System Section -->
-            <div class="ticket-system">
-                <h3>Support Ticket erstellen</h3>
-                <p>Hast du ein Problem? Erstelle ein Support Ticket und wir helfen dir schnellstmöglich!</p>
-                
-                <form id="ticketForm" class="ticket-form">
-                    <div class="form-group">
-                        <label for="ticketName">Dein Name:</label>
-                        <input type="text" id="ticketName" name="name" placeholder="z.B. DevDesert" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ticketEmail">E-Mail Adresse:</label>
-                        <input type="email" id="ticketEmail" name="email" placeholder="deine@email.de" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ticketCategory">Kategorie:</label>
-                        <select id="ticketCategory" name="category" required>
-                            <option value="">-- Wähle eine Kategorie --</option>
-                            <option value="bug">Bug Report</option>
-                            <option value="ban">Ban Appeal</option>
-                            <option value="suggestion">Suggestion</option>
-                            <option value="technical">Technisches Problem</option>
-                            <option value="other">Sonstiges</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ticketSubject">Betreff:</label>
-                        <input type="text" id="ticketSubject" name="subject" placeholder="Kurzbeschreibung" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="ticketMessage">Nachricht:</label>
-                        <textarea id="ticketMessage" name="message" placeholder="Beschreibe dein Problem..." rows="6" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn btn-submit">Ticket absenden</button>
-                </form>
-
-                <div id="ticketResponse" class="ticket-response" style="display: none;">
-                    <p id="ticketResponseText"></p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Support section removed -->
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -220,6 +140,15 @@
         <p>Minecraft ist ein Produkt von Mojang Studios.</p>
     </footer>
 
+    <!-- Besucherzähler (wird über JS gefüllt) -->
+    <div id="visitor-counter" class="visitor-counter" title="Gesamtbesucher">
+        <div class="vc-inner">
+            <span class="vc-label">Besucher</span>
+            <span id="visitor-count" class="vc-count">0</span>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
+

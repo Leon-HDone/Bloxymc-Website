@@ -1,1 +1,1 @@
-[# website](https://website-60a.pages.dev)
+[# website](https://bloxymc-website.pages.dev)

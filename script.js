@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Live Spielerzahl laden
     updatePlayerCount();
     setInterval(updatePlayerCount, 5000); // Alle 5 Sekunden aktualisieren
-    // Besucherzähler (CountAPI)
-    updateVisitorCounter();
+
+    // Tip/Quote Widget initialisieren
+    initTipWidget();
 });
 
 // ============================================================================
@@ -590,36 +591,69 @@ function updatePlayerCount() {
 }
 
 // ============================================================================
-// VISITOR COUNTER (CountAPI)
-// Uses public CountAPI: https://countapi.xyz/ (no backend required)
+// TIP / QUOTE WIDGET
 // ============================================================================
-function updateVisitorCounter() {
-    const countEl = document.getElementById('visitor-count');
-    if (!countEl) return;
 
-    // namespace/key - you can change namespace or key if you want a different counter
-    const namespace = 'bloxymc_website';
-    const key = 'pageviews';
-    const apiUrl = `https://api.countapi.xyz/hit/${namespace}/${key}`;
+const TIPS_AND_QUOTES = [
+    "🪵 Nimm immer mindestens 20–30 Holz am Anfang mit – damit kommst du sehr weit!",
+    "🍖 Verbessere schnell dein Essen: Brot → Steak → Goldene Karotten (beste Sättigung).",
+    "🛡️ Nutze Schilde – sie blocken Creeper-Explosionen (wenn du weit genug weg bist).",
+    "🛏️ Schlaf jede Nacht → sonst kommen Phantome, die nerven extrem.",
+    "💧 Halte immer einen Wasser-Eimer dabei → Fall-Schaden verhindern, Lava blocken.",
+    "💎 Farm dir früh Diamanten, aber: Bevor du stripminest → sichere erst Essen, Rüstung, Schwert und Schild.",
+    "🔦 Räume deine Höhle immer mit Fackeln rechts auf → dann findest du wieder raus.",
+    "🏠 Bau deine Base in Biome mit vielen Ressourcen: Plains, Taiga oder Küste.",
+    "🌳 Plains → viel Platz. Taiga → schöne Atmosphäre. Küste → Wasser + Land.",
+    "🎨 Benutze immer Farben, Tiefe (3D), Dachformen → wirkt viel schöner.",
+    "✨ Kleine Details machen enorm viel aus: Laternen, Trapdoors, Zäune + Blätter.",
+    "🛤️ Nutze Pfade aus Coarse Dirt / Gravel für bessere Base-Struktur.",
+    "🔧 Erstelle dir eine Sortieranlage – spart SO viel Zeit bei der Lagerung!",
+    "⚔️ Frühe Priorität: Holz → Stein → Eisen → Diamanten (in dieser Reihenfolge).",
+    "🏗️ Besser eine kleine Base bauen, die schön aussieht, als 'ne große Betonkiste!",
+];
 
-    fetch(apiUrl)
-        .then(res => res.json())
-        .then(data => {
-            if (data && typeof data.value !== 'undefined') {
-                countEl.textContent = Number(data.value).toLocaleString('de-DE');
-                // small flash to indicate increment
-                countEl.style.transition = 'transform 0.18s ease, color 0.25s ease';
-                countEl.style.transform = 'scale(1.15)';
-                countEl.style.color = '#ffd085';
-                setTimeout(() => {
-                    countEl.style.transform = '';
-                    countEl.style.color = '';
-                }, 300);
-            }
-        })
-        .catch(err => {
-            console.log('Visitor count request failed:', err);
-        });
+
+let currentTipIndex = 0;
+
+function initTipWidget() {
+    const tipText = document.getElementById('tip-text');
+    const tipNextBtn = document.getElementById('tip-next-btn');
+    
+    if (!tipText || !tipNextBtn) return;
+
+    // Zeige den ersten Tipp
+    displayTip(0);
+
+    // Button-Listener
+    tipNextBtn.addEventListener('click', () => {
+        currentTipIndex = (currentTipIndex + 1) % TIPS_AND_QUOTES.length;
+        displayTip(currentTipIndex);
+    });
+
+    // Auto-rotate every 8 seconds
+    setInterval(() => {
+        currentTipIndex = (currentTipIndex + 1) % TIPS_AND_QUOTES.length;
+        displayTip(currentTipIndex);
+    }, 8000);
 }
 
+function displayTip(index) {
+    const tipText = document.getElementById('tip-text');
+    const widget = document.getElementById('tip-widget');
+    if (!tipText) return;
+
+    // Fade-out Effekt
+    tipText.style.opacity = '0.5';
+    tipText.style.transform = 'translateY(5px)';
+
+    setTimeout(() => {
+        tipText.textContent = TIPS_AND_QUOTES[index];
+        tipText.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        tipText.style.opacity = '1';
+        tipText.style.transform = 'translateY(0)';
+    }, 150);
+}
+
+// Visitor counter removed
+ 
 console.log('✨ Website geladen! Viel Spaß auf DeinServer.net');
